@@ -14,9 +14,9 @@ A modern, responsive developer portfolio built using React and Vite to showcase 
 
 ## 📸 Portfolio Preview
 
-> Replace this image with a screenshot of your portfolio.
-
-![Portfolio Preview](./public/preview.png)
+<p align="center">
+  <img src="public/preview.png" alt="Portfolio Preview" width="100%" />
+</p>
 
 ---
 
