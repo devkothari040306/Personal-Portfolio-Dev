@@ -1,5 +1,5 @@
-import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./style";
 
 import {
@@ -7,70 +7,82 @@ import {
   Hero,
   Education,
   SkillsAndExperience,
-  ExtraCurricular,
   Footer,
-  OpenSource,
   Projects,
-  BlogPosts,
   Loading,
   Achievements,
 } from "./components";
 
 const App = () => {
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  React.useEffect(() => {
-    setTimeout(() => {
+  useEffect(() => {
+    const loadingTimer = window.setTimeout(() => {
       setIsLoading(false);
-    }, 1200);
+    }, 1000);
+
+    return () => {
+      window.clearTimeout(loadingTimer);
+    };
   }, []);
 
   return (
-    // A div to wrap the entire application
-    <div className="bg-primary w-full overflow-hidden">
-      <AnimatePresence>
+    <div className="bg-primary min-h-screen w-full overflow-x-hidden">
+      <AnimatePresence mode="wait">
         {isLoading ? (
           <Loading key="loading" />
         ) : (
-          <motion.section
-            key="content"
+          <motion.main
+            key="portfolio-content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: 0.5,
+              ease: "easeOut",
+            }}
           >
-            <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-              <div className={`${styles.boxWidth}`}>
+            {/* Navbar */}
+            <header
+              className={`${styles.paddingX} ${styles.flexCenter} bg-primary`}
+            >
+              <div className={styles.boxWidth}>
                 <Navbar />
               </div>
-            </div>
+            </header>
 
+            {/* Hero */}
             <div className={`bg-primary ${styles.flexStart} pt-[80px]`}>
-              <div className={`${styles.boxWidth}`}>
+              <div className={styles.boxWidth}>
                 <Hero />
               </div>
             </div>
 
+            {/* Skills and Education */}
             <div
               className={`bg-primary ${styles.flexCenter} ${styles.paddingX}`}
             >
-              <div className={`${styles.boxWidth}`}>
+              <div className={styles.boxWidth}>
                 <SkillsAndExperience />
                 <Education />
               </div>
             </div>
+
+            {/* Achievements */}
             <Achievements />
+
+            {/* Projects */}
             <div
               className={`bg-primary ${styles.flexCenter} ${styles.paddingX}`}
             >
-              <div className={`${styles.boxWidth}`}>
+              <div className={styles.boxWidth}>
                 <Projects />
-                <BlogPosts enabled={false} />
-                <OpenSource />
-                <ExtraCurricular />
               </div>
             </div>
+
+            {/* Contact and Footer */}
             <Footer />
-          </motion.section>
+          </motion.main>
         )}
       </AnimatePresence>
     </div>

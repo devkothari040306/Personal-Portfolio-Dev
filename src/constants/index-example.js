@@ -1,5 +1,5 @@
 import {
-  nitk,
+  jecrc,
   cluboard,
   cash_flow,
   gdsc,
@@ -12,7 +12,7 @@ import {
   placeicon,
   recruitment,
   huntly,
-  oracle,
+  sagInfotech,
   comicify_ai,
   greentrust,
   averlon,
@@ -25,7 +25,7 @@ import {
   manipal,
   icon,
   ethforall,
-  ethindia,
+  jecrc,
   placeholder,
 } from "../assets";
 

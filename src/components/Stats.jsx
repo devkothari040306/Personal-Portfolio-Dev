@@ -1,19 +1,36 @@
+import { motion } from "framer-motion";
+
 import { stats } from "../constants";
 import styles from "../style";
 
-const Stats = () => (
-  <section className={`${styles.flexCenter} flex-row flex-wrap sm:mb-20 mb-6`}>
-    {stats.map((stat) => (
-      <div key={stat.id} className={`flex-1 flex justify-start items-center flex-row m-3`} >
-        <h4 className="font-poppins font-semibold xs:text-[40.89px] text-[30.89px] xs:leading-[53.16px] leading-[43.16px] text-white">
-          {stat.value}
-        </h4>
-        <p className="font-poppins font-normal xs:text-[20.45px] text-[15.45px] xs:leading-[26.58px] leading-[21.58px] text-gradient uppercase ml-3">
-          {stat.title}
-        </p>
-      </div>
-    ))}
-  </section>
-);
+const Stats = () => {
+  return (
+    <section
+      className={`${styles.flexCenter} mb-8 flex flex-wrap justify-center gap-6 sm:mb-20`}
+    >
+      {stats.map((stat, index) => (
+        <motion.div
+          key={stat.id || stat.title}
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{
+            duration: 0.4,
+            delay: index * 0.1,
+          }}
+          className="min-w-[160px] rounded-2xl border border-gray-800 bg-black-gradient px-6 py-5 text-center transition-all duration-300 hover:border-teal-400 hover:shadow-lg hover:shadow-teal-500/20"
+        >
+          <h3 className="font-poppins text-[34px] font-bold text-white sm:text-[42px]">
+            {stat.value}
+          </h3>
+
+          <p className="mt-2 font-poppins text-sm uppercase tracking-wider text-gradient sm:text-base">
+            {stat.title}
+          </p>
+        </motion.div>
+      ))}
+    </section>
+  );
+};
 
 export default Stats;

@@ -1,72 +1,92 @@
 import React from "react";
-import Button from "./Button";
-import { socialMedia, aboutMe } from "../constants";
-import { profilePic } from "../assets";
-import { layout } from "../style";
-import { resumeLink, repoLink } from "../constants";
 import { AiFillGithub, AiFillFilePdf } from "react-icons/ai";
 
-const Footer = () => (
-  <footer id="contactMe" className="bg-gray-900 sm:px-16 px-6">
-    <div
-      className={`${layout.sectionReverse} xl:max-w-[1280px] w-full mx-auto gap-y-4 `}
+import Button from "./Button";
+import { profilePic } from "../assets";
+import { socialMedia, aboutMe, resumeLink, repoLink } from "../constants";
+import { layout } from "../style";
+
+const Footer = () => {
+  return (
+    <footer
+      id="contactMe"
+      className="bg-gray-900 sm:px-16 px-6 pt-16"
     >
-      <div className={` ${layout.sectionInfo}`}>
-        <h2 className="text-xl font-bold text-gray-800 font-poppins dark:text-white hover:text-gray-700 dark:hover:text-gray-300">
-          {aboutMe.name}
-        </h2>
-        <p
-          className={`font-poppins font-normal text-dimWhite text-[16px] leading-[30.8px] max-w-[470px] mt-5`}
-        >
-        {aboutMe.tagLine}
-        </p>
-        <div className="flex flex-row mt-4">
-          {socialMedia.map((social, index) => (
+      <div
+        className={`${layout.sectionReverse} xl:max-w-[1280px] w-full mx-auto gap-y-10`}
+      >
+        {/* Left */}
+        <div className={layout.sectionInfo}>
+          <h2 className="font-poppins font-bold text-3xl text-white">
+            {aboutMe.name}
+          </h2>
+
+          <p className="font-poppins text-dimWhite text-[17px] leading-[30px] max-w-[520px] mt-4">
+            {aboutMe.tagLine}
+          </p>
+
+          <div className="flex flex-wrap gap-5 mt-6">
+            {socialMedia.map((social) => (
+              <a
+                key={social.id}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.id}
+                className="text-white text-[28px] hover:text-teal-300 transition-colors duration-300"
+              >
+                {React.createElement(social.icon)}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-4 mt-8">
             <a
-              href={social.link}
+              href={resumeLink}
               target="_blank"
-              key={social.id}
-              index={index}
-              className="text-white mr-5 text-[25px] hover:text-teal-200"
+              rel="noopener noreferrer"
             >
-              {React.createElement(social.icon)}
+              <Button
+                text="Resume"
+                icon={AiFillFilePdf}
+              />
             </a>
-          ))}
+
+            <a
+              href={repoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                text="GitHub"
+                icon={AiFillGithub}
+              />
+            </a>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2">
-          {/* styles is a prop */}
-          <a href={resumeLink} target="_blank">
-            <Button
-              styles="mt-10 mr-3 inline-flex items-center justify-center"
-              text="Resume"
-              icon={AiFillFilePdf}
-            />
-          </a>
-          <a href={repoLink} target="_blank">
-            <Button
-              styles="mt-10 inline-flex items-center justify-center"
-              text="Star"
-              icon={AiFillGithub}
-            />
-          </a>
+        {/* Right */}
+        <div className="flex justify-center md:justify-end md:ml-auto">
+          <img
+            src={profilePic}
+            alt={`${aboutMe.name} profile`}
+            loading="lazy"
+            className="w-[220px] h-[220px] rounded-full object-cover border-4 border-teal-300 shadow-xl"
+          />
         </div>
       </div>
 
-      <div className="md:ml-auto mt-10 md:mt-0">
-        <img
-          src={profilePic}
-          alt="Parth Mittal"
-          className="w-[200px] h-[200px] border-2 border-teal-200 relative z-[5] rounded-full"
-        />
+      <div className="border-t border-gray-700 mt-12 py-6 text-center">
+        <p className="font-poppins text-dimWhite text-sm">
+          © {new Date().getFullYear()} {aboutMe.name}. All Rights Reserved.
+        </p>
+
+        <p className="font-poppins text-gray-400 text-xs mt-2">
+          Built with React • Vite • Tailwind CSS
+        </p>
       </div>
-    </div>
-    <div className="text-center font-poppins font-normal text-dimWhite text-xs sm:text-sm pb-4">
-      <p>
-        Made with 💙 by Parth Mittal & the Open Source Community
-      </p>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 export default Footer;

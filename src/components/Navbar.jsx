@@ -1,93 +1,181 @@
-import { useState, useEffect } from "react";
-import { close, parthmittal, menu } from "../assets";
-import { navLinks } from "../constants";
-import { scrollToSection } from "../lib/helperFunctions";
+import { useEffect, useRef, useState } from "react";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
+
+import { navLinks, resumeLink } from "../constants";
+import { scrollToSection } from "../lib/helperFunctions";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY < lastScrollY) {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 20 || currentScrollY < lastScrollY.current) {
         setShowNavbar(true);
-      } else {
+      } else if (currentScrollY > lastScrollY.current) {
         setShowNavbar(false);
+        setToggle(false);
       }
-      setLastScrollY(window.scrollY);
+
+      lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setToggle(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  const handleNavigation = (sectionId) => {
+    scrollToSection(sectionId);
+    setToggle(false);
+  };
+
+  const handleHomeClick = (event) => {
+    event.preventDefault();
+    scrollToSection("home");
+    setToggle(false);
+  };
 
   return (
     <motion.nav
       initial={{ y: -100 }}
-      animate={{ y: showNavbar ? 0 : -100 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      animate={{ y: showNavbar ? 0 : -110 }}
+      transition={{
+        duration: 0.3,
+        ease: "easeInOut",
+      }}
       className="nav-styles sm:px-16 px-6"
+      aria-label="Main navigation"
     >
-      {/* Logo */}
-      <a href="#home">
-        <img
-          src={parthmittal}
-          alt="Parth Mittal"
-          className="w-[80px] h-[80px]"
-        />
+      <a
+        href="#home"
+        onClick={handleHomeClick}
+        aria-label="Go to home section"
+        className="flex items-center gap-3"
+      >
+        <div className="w-11 h-11 rounded-full bg-blue-gradient p-[2px]">
+          <div className="w-full h-full rounded-full bg-primary flex items-center justify-center">
+            <span className="font-poppins font-bold text-[18px] text-gradient">
+              DK
+            </span>
+          </div>
+        </div>
+
+        <div className="hidden xs:block">
+          <p className="font-poppins font-semibold text-white text-[17px] leading-[20px]">
+            Dev Kothari
+          </p>
+
+          <p className="font-poppins text-dimWhite text-[11px] leading-[16px]">
+            Full Stack Developer
+          </p>
+        </div>
       </a>
 
-      {/* List of links */}
-      <ul className="list-none sm:flex hidden justify-end items-center flex-1 p-4">
-        {navLinks.map((nav, index) => (
-          <li
-            key={nav.id}
-            className={`font-poppins
-            font-normal
-            cursor-pointer
-            text-[16px]
-            ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}
-            text-white hover:text-teal-200`}
-            onClick={() => scrollToSection(nav.id)}
-          >
-            {nav.title}
-          </li>
-        ))}
-      </ul>
+      {/* Desktop navigation */}
+      <div className="hidden sm:flex flex-1 justify-end items-center">
+        <ul className="list-none flex justify-end items-center">
+          {navLinks.map((nav, index) => (
+            <li
+              key={nav.id}
+              className={`font-poppins font-normal text-[15px]
+                text-white hover:text-teal-200 transition-colors duration-200
+                ${index === navLinks.length - 1 ? "mr-0" : "mr-8"}`}
+            >
+              <button
+                type="button"
+                onClick={() => handleNavigation(nav.id)}
+                className="bg-transparent border-none cursor-pointer text-inherit"
+              >
+                {nav.title}
+              </button>
+            </li>
+          ))}
+        </ul>
 
-      {/* only for mobile devices, created separately */}
+        <a
+          href={resumeLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-8 px-5 py-2 rounded-lg bg-blue-gradient font-poppins font-medium text-[14px] text-primary hover:scale-105 transition-transform duration-200"
+        >
+          Resume
+        </a>
+      </div>
+
+      {/* Mobile navigation */}
       <div className="sm:hidden flex flex-1 justify-end items-center">
-        {/* shows toggle icon based on its state */}
-        <img
-          src={toggle ? close : menu}
-          alt="menu"
-          className="w-[28px] h-[28px] object-contain"
-          // correct way to change state using the prev
-          // version of the same state using a callback function
-          onClick={() => setToggle((prev) => !prev)}
-        />
+        <button
+          type="button"
+          onClick={() => setToggle((previous) => !previous)}
+          aria-label={toggle ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={toggle}
+          aria-controls="mobile-navigation"
+          className="relative z-50 flex items-center justify-center text-white hover:text-teal-200 transition-colors duration-200"
+        >
+          {toggle ? (
+            <IoClose size={30} aria-hidden="true" />
+          ) : (
+            <HiMenuAlt3 size={30} aria-hidden="true" />
+          )}
+        </button>
 
         <div
-          className={`${toggle ? "flex" : "hidden"} p-6 bg-black-gradient
-        absolute top-20 right-0 mx-4 my-2
-        min-w-[140px] rounded-xl sidebar`}
+          id="mobile-navigation"
+          className={`${
+            toggle ? "flex" : "hidden"
+          } p-6 bg-black-gradient absolute top-20 right-4 min-w-[210px] rounded-xl sidebar shadow-2xl z-40`}
         >
-          <ul className="list-none flex flex-col justify-end items-center flex-1">
-            {navLinks.map((nav, index) => (
+          <ul className="list-none flex flex-col items-start w-full">
+            {navLinks.map((nav) => (
               <li
                 key={nav.id}
-                className={`font-poppins
-                font-normal
-                cursor-pointer
-                text-[16px]
-                ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}
-                text-white`}
+                className="font-poppins font-normal text-[16px] text-white hover:text-teal-200 transition-colors duration-200 mb-4 w-full"
               >
-                <a href={`#${nav.id}`}>{nav.title}</a>
+                <button
+                  type="button"
+                  onClick={() => handleNavigation(nav.id)}
+                  className="w-full text-left bg-transparent border-none cursor-pointer text-inherit"
+                >
+                  {nav.title}
+                </button>
               </li>
             ))}
+
+            <li className="w-full mt-1">
+              <a
+                href={resumeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setToggle(false)}
+                className="flex justify-center w-full px-4 py-2 rounded-lg bg-blue-gradient font-poppins font-medium text-[15px] text-primary"
+              >
+                View Resume
+              </a>
+            </li>
           </ul>
         </div>
       </div>

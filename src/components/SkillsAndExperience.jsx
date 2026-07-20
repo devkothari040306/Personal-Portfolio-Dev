@@ -1,37 +1,42 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { BsLink45Deg } from "react-icons/bs";
+
 import { experiences, skills } from "../constants";
 import { layout } from "../style";
-import { motion } from "framer-motion";
 
 export const SkillIcon = ({ icon, name }) => {
   return (
-    <div className="flex flex-col">
-      <span className="text-white text-[30px] hover:text-teal-200">
+    <div className="group flex flex-col items-center text-center">
+      <span className="text-[30px] text-white transition-colors duration-300 group-hover:text-teal-200">
         {React.createElement(icon)}
       </span>
-      <p className="font-poppins text-dimWhite text-[12px] mt-2">{name}</p>
+
+      <p className="mt-2 font-poppins text-[12px] text-dimWhite transition-colors duration-300 group-hover:text-white">
+        {name}
+      </p>
     </div>
   );
 };
 
-const SkillCard = (props) => {
+const SkillCard = ({ title, items }) => {
   return (
     <motion.div
-      initial={{ y: -20, opacity: 0 }}
+      initial={{ y: 20, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="mt-4 mb-6 border-l border-gray-200 dark:border-gray-700 mx-4"
+      className="relative mx-2 mb-8 mt-4 border-l border-gray-700 pl-6"
     >
-      <div className="relative w-3 h-3 bg-gray-200 rounded-full top-5 right-[6.2px] border dark:border-gray-900 dark:bg-gray-700"></div>
-      <div className="flex flex-row items-center mb-6 ml-6">
-        <h4 className="font-poppins font-semibold text-[20px] text-gradient leading-[32px]">
-          {props.title}
-        </h4>
-      </div>
-      <div className="grid grid-cols-3 gap-8 ml-8">
-        {props.items.map((item, index) => (
-          <SkillIcon key={item.id} index={index} {...item} />
+      <div className="absolute -left-[6px] top-3 h-3 w-3 rounded-full border border-gray-900 bg-teal-400" />
+
+      <h3 className="mb-6 font-poppins text-[20px] font-semibold leading-[32px] text-gradient">
+        {title}
+      </h3>
+
+      <div className="grid grid-cols-3 gap-x-6 gap-y-8 sm:grid-cols-4 lg:grid-cols-3">
+        {items.map((item) => (
+          <SkillIcon key={item.id || item.name} {...item} />
         ))}
       </div>
     </motion.div>
@@ -40,90 +45,109 @@ const SkillCard = (props) => {
 
 const Content = ({ text, link }) => {
   return (
-    <div>
-      <p className="font-poppins font-normal text-[14px] text-dimWhite mt-4">
-        {text}{" "}
-        {link ? (
-          <a href={link} target="_blank">
-            <BsLink45Deg
-              size="1rem"
-              className="inline hover:text-teal-200"
-            ></BsLink45Deg>
-          </a>
-        ) : (
-          ""
-        )}
-      </p>
-    </div>
+    <p className="mt-3 font-poppins text-[14px] font-normal leading-6 text-dimWhite">
+      {text}
+
+      {link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open related link"
+          className="ml-2 inline-flex align-middle text-white transition-colors duration-300 hover:text-teal-200"
+        >
+          <BsLink45Deg size="1rem" />
+        </a>
+      )}
+    </p>
   );
 };
 
-const ExperienceCard = (props) => {
+const ExperienceCard = ({ logo, organisation, positions }) => {
   return (
-    <motion.div
-      initial={{ y: -20, opacity: 0 }}
+    <motion.article
+      initial={{ y: 20, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
+      className="w-full rounded-2xl border border-gray-800 bg-black-gradient p-6"
     >
-      <div className="flex flex-row items-center mb-6">
+      <div className="mb-7 flex items-center">
         <img
-          src={props.logo}
-          alt={props.organisation}
-          className="w-[52px] h-[52px] rounded-full z-[2]"
+          src={logo}
+          alt={`${organisation} logo`}
+          className="h-[52px] w-[52px] rounded-full object-contain"
         />
-        <h4 className="font-poppins font-semibold text-[20px] text-gradient leading-[32px] ml-2">
-          {props.organisation}
-        </h4>
+
+        <h3 className="ml-4 font-poppins text-[20px] font-semibold leading-[32px] text-gradient">
+          {organisation}
+        </h3>
       </div>
-      <ol className="relative border-l border-gray-200 dark:border-gray-700 ml-6">
-        {props.positions.map((position, index) => (
+
+      <ol className="relative ml-6 border-l border-gray-700">
+        {positions.map((position, index) => (
           <li
-            key={index}
-            className={`${
-              index === props.positions.length - 1 ? "mb-0" : "mb-4"
-            } ml-4`}
+            key={`${position.title}-${position.duration}`}
+            className={`ml-6 ${
+              index === positions.length - 1 ? "mb-0" : "mb-8"
+            }`}
           >
-            <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <span className="absolute -left-[6px] mt-2 h-3 w-3 rounded-full border border-gray-900 bg-teal-400" />
+
+            <h4 className="font-poppins text-lg font-semibold text-white">
               {position.title}
-            </h3>
-            <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+            </h4>
+
+            <time className="mt-1 block font-poppins text-sm text-gray-400">
               {position.duration}
             </time>
-            {position.content.map((info, index) => (
-              <Content key={index} index={index} {...info} />
-            ))}
-            <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"></p>
+
+            <div className="mt-3">
+              {position.content.map((info, contentIndex) => (
+                <Content
+                  key={`${position.title}-${contentIndex}`}
+                  {...info}
+                />
+              ))}
+            </div>
           </li>
         ))}
       </ol>
-    </motion.div>
+    </motion.article>
   );
 };
 
 const SkillsAndExperience = () => {
   return (
-    <section id="skills" className="mb-12">
-      <h1 className="flex-1 font-poppins font-semibold ss:text-[55px] text-[45px] text-white ss:leading-[80px] leading-[80px]">
-        Skills & Experience
-      </h1>
-      <div
-        className={layout.section}
+    <section id="skills" className="mb-16 scroll-mt-24">
+      <motion.h2
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="font-poppins text-[42px] font-semibold leading-tight text-white ss:text-[55px]"
       >
-        {/* Skills */}
-        <motion.div className={`ml-2 mb-6 ${layout.sectionInfo}`}>
-          {skills.map((skill, index) => (
-            <SkillCard key={index} index={index} {...skill} />
-          ))}
-        </motion.div>
+        Skills & Experience
+      </motion.h2>
 
-        {/* Experience */}
-        <motion.div className="flex flex-1 items-center justify-start flex-col">
-          {experiences.map((exp, index) => (
-            <ExperienceCard key={index} index={index} {...exp} />
+      <div className={`${layout.section} items-start gap-10`}>
+        <div className={`mb-6 ml-2 ${layout.sectionInfo}`}>
+          {skills.map((skill) => (
+            <SkillCard
+              key={skill.title}
+              {...skill}
+            />
           ))}
-        </motion.div>
+        </div>
+
+        <div className="flex flex-1 flex-col items-center justify-start gap-8">
+          {experiences.map((experience) => (
+            <ExperienceCard
+              key={experience.organisation}
+              {...experience}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

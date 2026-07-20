@@ -1,154 +1,169 @@
 import React, { useState, useEffect, useRef } from "react";
 import { projects } from "../constants";
 import { AiFillGithub } from "react-icons/ai";
-import { BsLink45Deg } from "react-icons/bs";
+import { BsArrowLeft, BsArrowRight, BsLink45Deg } from "react-icons/bs";
 
-const Project = (props) => {
+const ProjectCard = ({
+  title,
+  image,
+  stack,
+  content,
+  github,
+  link,
+}) => {
   return (
-    <div className="project-card flex-shrink-0 px-8 py-6 transition-colors duration-300 transform border rounded-xl hover:border-transparent group dark:border-gray-700 dark:hover:border-transparent feature-card w-[320px] sm:w-[400px] md:w-[500px] mr-6 sm:mr-8 md:mr-10">
-      <div className="flex flex-col items-start">
+    <div className="project-card flex-shrink-0 w-[340px] sm:w-[430px] md:w-[500px] mr-8 rounded-2xl feature-card border border-gray-700 p-7 hover:scale-[1.02] transition-all duration-300">
+      <div className="flex flex-col h-full">
         <img
-          className="flex-shrink-0 object-cover w-20 h-20 rounded-full ring-4 ring-gray-300"
-          src={props.image}
-          alt=""
+          src={image}
+          alt={title}
+          className="w-full h-[220px] object-cover rounded-xl mb-6 border border-gray-700"
         />
 
-        <div className="mt-4 w-full">
-          <h1 className="text-xl font-semibold font-poppins text-gray-700 capitalize md:text-2xl group-hover:text-white text-gradient">
-            {props.title}
-          </h1>
-          <p className="font-poppins font-normal text-dimWhite mt-3 mb-2">
-            Tech Stack
-          </p>
-          <div className="text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
-            <div className="flex flex-wrap gap-4">
-              {props.stack.map((tech, index) => (
-                <div
-                  key={tech.id}
-                  index={index}
-                  className="text-dimWhite text-[20px] hover:text-teal-200 tooltip"
-                >
-                  {React.createElement(tech.icon)}
-                  <span className="tooltiptext">{tech.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+        <h2 className="font-poppins font-semibold text-[26px] text-gradient mb-4">
+          {title}
+        </h2>
+
+        <h3 className="font-poppins text-dimWhite mb-3">
+          Tech Stack
+        </h3>
+
+        <div className="flex flex-wrap gap-4 mb-6">
+          {stack.map((tech) => {
+            const key = tech?.id ?? tech?.name ?? tech;
+            const label = tech?.name ?? tech;
+
+            return (
+              <div
+                key={key}
+                className="tooltip flex items-center justify-center rounded-full bg-[#111827] p-3 text-[22px] text-white hover:text-teal-300 transition-colors"
+              >
+                {tech?.icon ? (
+                  React.createElement(tech.icon)
+                ) : (
+                  <span className="text-sm font-medium">{label}</span>
+                )}
+                <span className="tooltiptext">
+                  {label}
+                </span>
+              </div>
+            );
+          })}
         </div>
-      </div>
 
-      <p className="mt-6 text-gray-500 dark:text-gray-300 group-hover:text-gray-300 font-poppins">
-        {props.content}
-      </p>
+        <p className="font-poppins text-dimWhite leading-7 flex-grow">
+          {content}
+        </p>
 
-      <div className="flex mt-4 -mx-2">
-        {props.github ? (
-          <a href={props.github} target="_blank">
-            <AiFillGithub
-              size="2rem"
-              className="text-white mr-1 hover:text-teal-200"
-            />
-          </a>
-        ) : (
-          ""
-        )}
-        {props.link ? (
-          <a href={props.link} target="_blank">
-            <BsLink45Deg
-              size="2rem"
-              className="text-white hover:text-teal-200"
-            ></BsLink45Deg>
-          </a>
-        ) : (
-          ""
-        )}
+        <div className="flex gap-6 mt-8">
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-white hover:text-teal-300 transition-colors"
+            >
+              <AiFillGithub size={28} />
+              <span className="font-poppins">GitHub</span>
+            </a>
+          )}
+
+          {link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-white hover:text-teal-300 transition-colors"
+            >
+              <BsLink45Deg size={28} />
+              <span className="font-poppins">Live Demo</span>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
 const Projects = () => {
-  const [currentIndex, setCurrentIndex] = useState(0); // State to track current carousel position
-  const [cardTotalWidth, setCardTotalWidth] = useState(0); // State to store total width of each card (width + margin) for scroll calculations
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardWidth, setCardWidth] = useState(0);
   const containerRef = useRef(null);
 
-  // Calculate card width on mount and window resize for responsive carousel
   useEffect(() => {
-    const updateCardWidth = () => {
-      if (containerRef.current) {
-        const card = containerRef.current.querySelector(".project-card");
-        if (card) {
-          const cardWidth = card.offsetWidth;
-          const cardMargin = parseInt(
-            window.getComputedStyle(card).marginRight,
-            10
-          );
-          setCardTotalWidth(cardWidth + cardMargin);
-        }
-      }
+    const updateWidth = () => {
+      if (!containerRef.current) return;
+
+      const card =
+        containerRef.current.querySelector(".project-card");
+
+      if (!card) return;
+
+      const style = window.getComputedStyle(card);
+
+      setCardWidth(
+        card.offsetWidth + parseInt(style.marginRight, 10)
+      );
     };
-    updateCardWidth();
-    window.addEventListener("resize", updateCardWidth);
-    return () => {
-      window.removeEventListener("resize", updateCardWidth);
-    };
+
+    updateWidth();
+
+    window.addEventListener("resize", updateWidth);
+
+    return () =>
+      window.removeEventListener("resize", updateWidth);
   }, []);
 
-  // Navigation handlers
-  const handleNext = () => {
-    if (currentIndex < projects.length - 1) {
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-    }
+  const nextProject = () => {
+    if (currentIndex < projects.length - 1)
+      setCurrentIndex((prev) => prev + 1);
   };
 
-  // Navigate to previous project card
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevIndex) => prevIndex - 1);
-    }
+  const previousProject = () => {
+    if (currentIndex > 0)
+      setCurrentIndex((prev) => prev - 1);
   };
-
-  const isNextDisabled = currentIndex >= projects.length - 1;
-  const isPrevDisabled = currentIndex === 0;
 
   return (
     <section id="projects" className="overflow-hidden">
-      <h1 className="flex-1 font-poppins font-semibold ss:text-[55px] text-[45px] text-white ss:leading-[80px] leading-[80px]">
-        Projects
-      </h1>
+      <div className="flex justify-between items-center mb-10">
+        <h1 className="font-poppins font-semibold text-white ss:text-[55px] text-[42px]">
+          Featured Projects
+        </h1>
 
-      <div className="container px-2 py-14 mx-auto mb-8">
-        <div className="overflow-hidden">
-          <div
-            ref={containerRef}
-            className="flex transition-transform duration-500 ease-in-out mb-8"
-            style={{
-              transform: `translateX(-${currentIndex * cardTotalWidth}px)`,
-            }}
+        <div className="flex gap-3">
+          <button
+            onClick={previousProject}
+            disabled={currentIndex === 0}
+            className="p-3 rounded-full bg-gray-700 hover:bg-gray-600 disabled:opacity-40 transition-colors"
           >
-            {/* Render all project cards */}
-            {projects.map((project, index) => (
-              <Project key={project.id} index={index} {...project} />
-            ))}
-          </div>
-          <div className="flex justify-end mb-8">
-            {/* Navigation buttons */}
-            <button
-              onClick={handlePrev}
-              disabled={isPrevDisabled}
-              // p-2 bg-gray-700 rounded-full disabled:opacity-50 mx-2 hover:bg-gray-600 transition-colors
-              className="p-2 bg-gray-700 rounded-full disabled:opacity-50 mx-2 hover:bg-gray-600 transition-colors text-white"
-            >
-              &lt;
-            </button>
-            <button
-              onClick={handleNext}
-              disabled={isNextDisabled}
-              className="p-2 bg-gray-700 rounded-full disabled:opacity-50 mx-2 hover:bg-gray-600 transition-colors text-white"
-            >
-              &gt;
-            </button>
-          </div>
+            <BsArrowLeft className="text-white" />
+          </button>
+
+          <button
+            onClick={nextProject}
+            disabled={currentIndex === projects.length - 1}
+            className="p-3 rounded-full bg-gray-700 hover:bg-gray-600 disabled:opacity-40 transition-colors"
+          >
+            <BsArrowRight className="text-white" />
+          </button>
+        </div>
+      </div>
+
+      <div className="overflow-hidden">
+        <div
+          ref={containerRef}
+          className="flex transition-transform duration-500"
+          style={{
+            transform: `translateX(-${currentIndex * cardWidth}px)`,
+          }}
+        >
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              {...project}
+            />
+          ))}
         </div>
       </div>
     </section>
