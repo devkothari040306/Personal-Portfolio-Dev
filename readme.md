@@ -1,13 +1,14 @@
 <h1 align="center">🚀 Dev Kothari - Personal Portfolio</h1>
 
 <p align="center">
-A modern, responsive developer portfolio built using React and Vite to showcase my projects, skills, experience, and achievements.
+A modern, responsive developer portfolio built with React, Vite, and Tailwind CSS to showcase my projects, skills, experience, achievements, and open-source contributions.
 </p>
 
 <p align="center">
 <a href="https://personal-portfolio-lake-kappa-91.vercel.app/">🌐 Live Portfolio</a> •
-<a href="https://github.com/devkothari040306">GitHub</a> •
-<a href="https://www.linkedin.com/in/dev040306">LinkedIn</a>
+<a href="https://github.com/devkothari040306/Personal-Portfolio-Dev">GitHub</a> •
+<a href="https://www.linkedin.com/in/dev040306">LinkedIn</a> •
+<a href="https://drive.google.com/file/d/1a8wJZUB-IRUC-Yx55abxzSezn0mrQuXg/view?usp=drive_link">Resume</a>
 </p>
 
 ---
@@ -25,22 +26,22 @@ A modern, responsive developer portfolio built using React and Vite to showcase 
 - About
 - Tech Stack
 - Features
-- Projects
+- Featured Projects
+- Open Source Contribution
 - Installation
 - Folder Structure
 - Deployment
 - Contact
-- License
 
 ---
 
 # 👨‍💻 About
 
-Hi, I'm **Dev Kothari**, a Final-Year Computer Science Engineering student at **JECRC University**.
+Hi, I'm **Dev Kothari**, a final-year Computer Science Engineering student at **JECRC University**.
 
-I'm passionate about building scalable Full Stack Web Applications using the MERN Stack and continuously learning modern technologies including Java, Spring Boot, and Angular.
+I enjoy building full-stack web applications, contributing to open-source projects, and continuously learning modern technologies such as React, Node.js, Java, Spring Boot, and Angular.
 
-This portfolio showcases my projects, internship experience, technical skills, and achievements.
+This portfolio highlights my projects, internship experience, technical skills, achievements, and open-source work.
 
 ---
 
@@ -51,7 +52,7 @@ This portfolio showcases my projects, internship experience, technical skills, a
 - React.js
 - Vite
 - Tailwind CSS
-- JavaScript (ES6)
+- JavaScript (ES6+)
 - HTML5
 - CSS3
 
@@ -82,16 +83,15 @@ This portfolio showcases my projects, internship experience, technical skills, a
 
 # ✨ Features
 
-- Responsive Design
-- Modern UI
-- Smooth Animations
-- Skills Timeline
-- Education Section
-- Internship Experience
-- Project Showcase
-- Social Links
-- Resume Download
-- Contact Section
+- Responsive and modern UI
+- Smooth animations and transitions
+- Skills and experience section
+- Education highlights
+- Internship experience
+- Project showcase
+- Achievements and open-source contribution
+- Resume download link
+- Contact section
 
 ---
 
@@ -99,68 +99,69 @@ This portfolio showcases my projects, internship experience, technical skills, a
 
 ## 👕 TryOnix
 
-AI-powered Outfit Recommendation Platform
+AI-powered outfit recommendation platform.
 
-### Features
+### Highlights
 
 - Virtual Try-On
 - AI Chatbot
 - JWT Authentication
-- Outfit Recommendation
-- MERN Stack
-- Cloudinary Integration
+- Personalized recommendations
+- MERN stack
+- Cloudinary integration
 
-Live Demo
-
-https://try-onix-six.vercel.app/
-
-GitHub
-
-https://github.com/devkothari040306/TryOnix
+- Live Demo: https://try-onix-six.vercel.app/
+- GitHub: https://github.com/devkothari040306/TryOnix
 
 ---
 
 ## 💇 Spotlight Salon
 
-Salon Appointment Booking System
+Salon appointment booking system.
 
-### Features
+### Highlights
 
-- MERN Stack
-- Authentication
-- Admin Dashboard
-- Appointment Booking
-- CRUD Operations
+- MERN stack
+- Authentication and role-based access
+- Admin dashboard
+- Appointment booking and management
+- CRUD operations
 
-Live Demo
-
-https://spotlight-indol-mu.vercel.app/
-
-GitHub
-
-https://github.com/devkothari040306/Spotlight-Salon-Appointment-App
+- Live Demo: https://spotlight-indol-mu.vercel.app/
+- GitHub: https://github.com/devkothari040306/Spotlight-Salon-Appointment-App
 
 ---
 
-## 💬 MERN Chat App
+## 💬 Real-Time Chat App
 
-Real-Time Chat Application
+Full-stack chat application with real-time messaging.
 
-### Features
+### Highlights
 
 - Socket.io
-- JWT Authentication
-- Real-time Messaging
-- Image Sharing
-- Password Reset
+- JWT authentication
+- Real-time messaging
+- Image and file sharing
+- Password reset flow
 
-Live Demo
+- Live Demo: https://chat-app-2fpa.vercel.app/
+- GitHub: https://github.com/devkothari040306/mern-chat-app
 
-https://chat-app-2fpa.vercel.app/
+---
 
-GitHub
+# 🏆 Open Source Contribution
 
-https://github.com/devkothari040306/mern-chat-app
+## VisualDB – Merged Pull Request
+
+I contributed a reusable React confirmation modal component to the VisualDB project, replacing the native browser confirmation dialog and improving the user experience.
+
+- Implemented a reusable ConfirmModal component
+- Improved UI consistency and code reusability
+- Integrated the modal into the reset-progress workflow
+- Collaborated using GitHub pull requests and merged contribution review
+
+- Repository: https://github.com/Itsmeinayath/visualdb
+- Merged PR: https://github.com/Itsmeinayath/visualdb/pull/20
 
 ---
 
@@ -169,13 +170,13 @@ https://github.com/devkothari040306/mern-chat-app
 Clone the repository
 
 ```bash
-git clone https://github.com/devkothari040306/personal-portfolio.git
+git clone https://github.com/devkothari040306/Personal-Portfolio-Dev.git
 ```
 
-Go to project folder
+Go to the project folder
 
 ```bash
-cd personal-portfolio
+cd Personal-Portfolio-Dev
 ```
 
 Install dependencies
@@ -184,19 +185,19 @@ Install dependencies
 npm install
 ```
 
-Start development server
+Start the development server
 
 ```bash
 npm run dev
 ```
 
-Build project
+Build the project
 
 ```bash
 npm run build
 ```
 
-Preview production build
+Preview the production build
 
 ```bash
 npm run preview
@@ -206,14 +207,13 @@ npm run preview
 
 # 📁 Folder Structure
 
-```
-src
- ├── assets
- ├── components
- ├── constants
- ├── pages
- ├── App.jsx
- └── main.jsx
+```text
+src/
+├── assets/
+├── components/
+├── constants/
+├── App.jsx
+└── main.jsx
 ```
 
 ---
@@ -238,25 +238,18 @@ Upload the generated `dist` folder or connect the repository directly with Verce
 
 📧 Email: devkothari040306@gmail.com
 
-🌐 Portfolio
+🌐 Portfolio: https://personal-portfolio-lake-kappa-91.vercel.app/
 
-https://glow-folio-07.lovable.app
+💼 LinkedIn: https://www.linkedin.com/in/dev040306
 
-💼 LinkedIn
-
-https://www.linkedin.com/in/dev040306
-
-💻 GitHub
-
-https://github.com/devkothari040306
+💻 GitHub: https://github.com/devkothari040306
 
 ---
 
 # ⭐ Support
 
 If you like this project, consider giving it a ⭐ on GitHub.
-
-It really helps and motivates me to build more projects.
+It really helps and motivates me to keep building and sharing more projects.
 
 ---
 
