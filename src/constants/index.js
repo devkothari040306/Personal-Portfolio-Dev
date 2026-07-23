@@ -2,6 +2,7 @@ import {
   tryonix,
   spotlight,
   chatapp,
+  openSourceContribution,
   jecrc,
   sagInfotech,
 } from "../assets";
@@ -39,7 +40,7 @@ import { DiCss3, DiJava } from "react-icons/di";
 /* ---------------- Resume ---------------- */
 
 export const resumeLink =
-  "https://drive.google.com/file/d/1-j34BDld3K4GBNhnZHpeHbKWxmtdr3N0/view?usp=drivesdk";
+  "https://drive.google.com/file/d/1a8wJZUB-IRUC-Yx55abxzSezn0mrQuXg/view?usp=drive_link";
 
 export const repoLink =
   "https://github.com/devkothari040306/Personal-Portfolio-Dev";
@@ -92,6 +93,19 @@ export const educationList = [
 export const achievements = [
   {
     id: "a-1",
+    icon: openSourceContribution,
+    event: "Open Source Contribution",
+    position: "Merged Pull Request – VisualDB",
+    content1:
+      "Contributed a reusable React ConfirmModal component to replace the native browser confirmation dialog in the VisualDB project.",
+    content2:
+      "Improved UI consistency, code reusability, and user experience while collaborating through GitHub pull requests.",
+    content3: "",
+    article: "https://github.com/Itsmeinayath/visualdb/pull/20",
+  },
+
+  {
+    id: "a-2",
     icon: jecrc,
     event: "LeetCode",
     position: "120+ Problems Solved",
@@ -486,6 +500,29 @@ export const projects = [
       "Express",
       "MongoDB",
       "JWT",
+    ],
+  },
+
+  {
+    id: "project-4",
+    title: "Open Source Contribution – VisualDB",
+    github: "https://github.com/Itsmeinayath/visualdb",
+    link: "https://github.com/Itsmeinayath/visualdb/pull/20",
+    image: openSourceContribution,
+
+    content: [
+      "Contributed to the VisualDB open-source project by implementing a reusable React confirmation modal.",
+      "Replaced the native browser confirmation dialog with a cleaner, reusable UI component to improve user experience.",
+      "Integrated the modal into the reset progress workflow while preserving the existing application logic.",
+      "Worked with GitHub collaboration workflows including branching, pull requests, and merged contribution review.",
+    ],
+
+    stack: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "Git",
+      "GitHub",
     ],
   },
 ];

@@ -6,6 +6,7 @@ import sagInfotech from "./sag-infotech.png";
 import tryonix from "./tryonix.png";
 import spotlight from "./spotlight.png";
 import chatapp from "./chatapp.png";
+import openSourceContribution from "./open-source-contribution.svg";
 
 export {
   profilePic,
@@ -16,4 +17,5 @@ export {
   tryonix,
   spotlight,
   chatapp,
+  openSourceContribution,
 };
