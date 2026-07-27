@@ -40,7 +40,7 @@ import { DiCss3, DiJava } from "react-icons/di";
 /* ---------------- Resume ---------------- */
 
 export const resumeLink =
-  "https://drive.google.com/file/d/1a8wJZUB-IRUC-Yx55abxzSezn0mrQuXg/view?usp=drive_link";
+  "https://drive.google.com/file/d/1iJfD06odn4nrSg9nnDSCJHZU-vnmxM99/view?usp=drive_link";
 
 export const repoLink =
   "https://github.com/devkothari040306/Personal-Portfolio-Dev";
@@ -58,6 +58,10 @@ export const navLinks = [
   {
     id: "education",
     title: "Education",
+  },
+  {
+    id: "certificates",
+    title: "Certificates",
   },
   {
     id: "achievements",
@@ -82,9 +86,32 @@ export const educationList = [
     title: "JECRC University, Jaipur",
     degree: "Bachelor of Technology in Computer Science Engineering",
     duration: "2023 – 2027",
-    content1: "CGPA: 8.73 / 10",
+    content1: "CGPA: 8.85 / 10",
     content2:
       "Relevant coursework: Data Structures & Algorithms, Object-Oriented Programming, DBMS, Operating Systems, Computer Networks.",
+  },
+];
+
+/* ---------------- Certificates ---------------- */
+
+export const certificates = [
+  {
+    id: "cert-1",
+    title: "Advanced Software Engineering",
+    issuer: "Walmart (Forage)",
+    date: "July 2026",
+  },
+  {
+    id: "cert-2",
+    title: "Generative AI Explained",
+    issuer: "NVIDIA",
+    date: "June 2026",
+  },
+  {
+    id: "cert-3",
+    title: "Google Cloud Engineering Certificate",
+    issuer: "Google Cloud",
+    date: "November 2025",
   },
 ];
 
@@ -390,7 +417,6 @@ export const skills = [
 ];
 
 /* ---------------- Experience ---------------- */
-
 export const experiences = [
   {
     organisation: "SAG Infotech",
@@ -402,15 +428,15 @@ export const experiences = [
         duration: "July 2026 - Present",
         content: [
           {
-            text: "Receiving hands-on training in Java, Angular, Spring Boot and REST API development through live project-based sessions.",
+            text: "Built and configured full CRUD REST APIs (Save, Update, Delete, Get All, Get By ID) in Java on GenCodex, SAG Infotech's AI-powered Low-Code/No-Code platform, including DB connections and entity generation.",
             link: "",
           },
           {
-            text: "Building enterprise-level applications while learning industry-standard development practices.",
+            text: "Configured SAG Grid components in Angular (properties, headers, pagination) and implemented Reactive Form validation via FormGroup bindings.",
             link: "",
           },
           {
-            text: "Strengthening frontend-backend integration, debugging, API development and collaborative software engineering skills.",
+            text: "Engineered frontend-backend API mapping, binding Angular services to auto-generated Java APIs with real-time grid data and toast notifications.",
             link: "",
           },
         ],
@@ -602,7 +628,7 @@ export const aboutMe = {
     "Full Stack Developer | MERN Stack | React.js | Node.js | Java | Open to Work",
 
   intro:
-    "Final-year Computer Science Engineering student at JECRC University (CGPA: 8.73) passionate about building scalable full-stack web applications. Experienced with the MERN stack, REST APIs, JWT authentication, Socket.io and AI-powered solutions. Currently working as a Full Stack Developer Intern at SAG Infotech while continuously improving my skills in Java, Spring Boot and Angular.",
+    "Final-year Computer Science Engineering student at JECRC University (CGPA: 8.85) passionate about building scalable full-stack web applications. Experienced with the MERN stack, REST APIs, JWT authentication, Socket.io and AI-powered solutions. Currently working as a Full Stack Developer Intern at SAG Infotech while continuously improving my skills in Java, Spring Boot and Angular.",
 };
 
 export const itemsToFetch = 20;

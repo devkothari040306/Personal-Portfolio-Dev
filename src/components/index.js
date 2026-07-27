@@ -3,6 +3,7 @@
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import Education from "./Education";
+import Certificates from "./Certificates";
 import SkillsAndExperience from "./SkillsAndExperience";
 import Projects from "./Projects";
 import Footer from "./Footer";
@@ -15,6 +16,7 @@ export {
   Navbar,
   Hero,
   Education,
+  Certificates,
   SkillsAndExperience,
   Projects,
   Footer,

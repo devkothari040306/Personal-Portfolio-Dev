@@ -6,6 +6,7 @@ import {
   Navbar,
   Hero,
   Education,
+  Certificates,
   SkillsAndExperience,
   Footer,
   Projects,
@@ -65,6 +66,7 @@ const App = () => {
               <div className={styles.boxWidth}>
                 <SkillsAndExperience />
                 <Education />
+                <Certificates />
               </div>
             </div>
 
