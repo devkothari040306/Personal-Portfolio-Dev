@@ -1,14 +1,14 @@
 <h1 align="center">🚀 Dev Kothari - Personal Portfolio</h1>
 
 <p align="center">
-A modern, responsive developer portfolio built with React, Vite, and Tailwind CSS to showcase my projects, skills, experience, achievements, and open-source contributions.
+A modern, responsive developer portfolio built with React, Vite, and Tailwind CSS to showcase my projects, skills, experience, achievements, certifications, and open-source contributions.
 </p>
 
 <p align="center">
 <a href="https://personal-portfolio-lake-kappa-91.vercel.app/">🌐 Live Portfolio</a> •
 <a href="https://github.com/devkothari040306/Personal-Portfolio-Dev">GitHub</a> •
 <a href="https://www.linkedin.com/in/dev040306">LinkedIn</a> •
-<a href="https://drive.google.com/file/d/1a8wJZUB-IRUC-Yx55abxzSezn0mrQuXg/view?usp=drive_link">Resume</a>
+<a href="https://drive.google.com/file/d/1iJfD06odn4nrSg9nnDSCJHZU-vnmxM99/view?usp=drive_link">Resume</a>
 </p>
 
 ---
@@ -27,6 +27,7 @@ A modern, responsive developer portfolio built with React, Vite, and Tailwind CS
 - Tech Stack
 - Features
 - Featured Projects
+- Certifications
 - Open Source Contribution
 - Installation
 - Folder Structure
@@ -37,11 +38,11 @@ A modern, responsive developer portfolio built with React, Vite, and Tailwind CS
 
 # 👨‍💻 About
 
-Hi, I'm **Dev Kothari**, a final-year Computer Science Engineering student at **JECRC University**.
+Hi, I'm **Dev Kothari**, a final-year Computer Science Engineering student at **JECRC University** (CGPA: 8.85).
 
 I enjoy building full-stack web applications, contributing to open-source projects, and continuously learning modern technologies such as React, Node.js, Java, Spring Boot, and Angular.
 
-This portfolio highlights my projects, internship experience, technical skills, achievements, and open-source work.
+This portfolio highlights my projects, internship experience, technical skills, achievements, certifications, and open-source work.
 
 ---
 
@@ -89,6 +90,7 @@ This portfolio highlights my projects, internship experience, technical skills, 
 - Education highlights
 - Internship experience
 - Project showcase
+- Certifications section
 - Achievements and open-source contribution
 - Resume download link
 - Contact section
@@ -146,6 +148,14 @@ Full-stack chat application with real-time messaging.
 
 - Live Demo: https://chat-app-2fpa.vercel.app/
 - GitHub: https://github.com/devkothari040306/mern-chat-app
+
+---
+
+# 📜 Certifications
+
+- **Advanced Software Engineering** — Walmart (Forage), July 2026
+- **Generative AI Explained** — NVIDIA, June 2026
+- **Google Cloud Engineering Certificate** — Google Cloud, November 2025
 
 ---
 
@@ -236,7 +246,7 @@ Upload the generated `dist` folder or connect the repository directly with Verce
 
 **Dev Kothari**
 
-📧 Email: devkothari040306@gmail.com
+📧 Email: devkothari436@gmail.com
 
 🌐 Portfolio: https://personal-portfolio-lake-kappa-91.vercel.app/
 
